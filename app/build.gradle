@@ -150,15 +150,6 @@ android {
             }
         }
     }
-    build {
-        doLast() {
-            if ("true" == IS_JENKINS) {
-                println "this is jenkins------------${fileArray.size()}----------------------------------------------"
-            } else {
-                println "this is no jenkins----------------------------------------------------------"
-            }
-        }
-    }
 }
 
 dependencies {
@@ -169,4 +160,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+build {
+    doLast() {
+        println "doLast----------------------------------------------------------"
+
+        if ("true" == IS_JENKINS) {
+            println "this is jenkins------------${fileArray.size()}----------------------------------------------"
+        } else {
+            println "this is no jenkins----------------------------------------------------------"
+        }
+    }
 }
