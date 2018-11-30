@@ -1,0 +1,38 @@
+task copyTask {
+    doLast {
+        if ("true" == IS_JENKINS) {
+            println("this is jenkins---------------------------------------------------")
+            def fileName = "livechat_${this.android.defaultConfig.versionName}_" +
+                    "${this.android.defaultConfig.versionCode}_" + "${BUILD_TIME}_" + "${PRODUCT_FLAVORS}.apk"
+
+            def sourceFile = rootDir.getAbsolutePath() + "/apk/" + fileName
+            def targetFile = new File("G:/apk/${Branch}/")
+            try {
+//            判断文件夹是否存在
+                if (!targetFile.exists()) {
+                    targetFile.mkdir()
+                }
+                //拷贝
+                copy {
+                    from sourceFile
+                    into targetFile
+//                    rename {
+//                        fileName
+//                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace()
+            }
+        }
+    }
+}
+
+this.project.afterEvaluate { project ->
+    def buildTask = project.tasks.getByName('build')
+    if (buildTask == null) {
+        throw GradleException('the build task is not found')
+    }
+    buildTask.doLast {
+        copyTask.execute()
+    }
+}

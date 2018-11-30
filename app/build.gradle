@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply from: this.file('copyApk.gradle')
+
 def getRCStoreFile() {
     if ("true" == IS_JENKINS) {
         return file("C:/Users/even/Desktop/rc")
@@ -35,68 +37,68 @@ android {
     flavorDimensions "default"
 
     productFlavors {
-        GOOGLE {
-            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
-            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
-            buildConfigField("boolean", "LOG_ENABLE", "false")
-            buildConfigField("boolean", "EMAIL_REGISTE", "false")
-            buildConfigField("boolean", "TEST", "false")
-            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
-            buildConfigField("int", "ENVIRONMENT", "1")
-
-
-            manifestPlaceholders = [channelName: "GooglePlay"]
-        }
-        HUAWEI {
-            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
-            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
-            buildConfigField("boolean", "LOG_ENABLE", "false")
-            buildConfigField("boolean", "EMAIL_REGISTE", "false")
-            buildConfigField("boolean", "TEST", "false")
-            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
-            buildConfigField("int", "ENVIRONMENT", "1")
-
-
-            manifestPlaceholders = [channelName: "HuaWei"]
-        }
-        MI {
-            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
-            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
-            buildConfigField("boolean", "LOG_ENABLE", "false")
-            buildConfigField("boolean", "EMAIL_REGISTE", "false")
-            buildConfigField("boolean", "TEST", "false")
-            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
-            buildConfigField("int", "ENVIRONMENT", "1")
-
-
-            manifestPlaceholders = [channelName: "MiStore"]
-        }
-
-
-        RELEASE_TEST {
-            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
-            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
-            buildConfigField("boolean", "LOG_ENABLE", "true")
-            buildConfigField("boolean", "EMAIL_REGISTE", "true")
-            buildConfigField("boolean", "TEST", "true")
-            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
-            buildConfigField("int", "ENVIRONMENT", "1")
-
-
-            manifestPlaceholders = [channelName: "GooglePlay"]
-        }
-
-        SERVER_202_TEST {
-            buildConfigField("String", "SERVER_BASE_URL", "\"http://39.107.25.202\"")
-            buildConfigField("String", "INAPP_BILLING_URL", "\"http://39.107.25.202\"")
-            buildConfigField("boolean", "LOG_ENABLE", "true")
-            buildConfigField("boolean", "EMAIL_REGISTE", "true")
-            buildConfigField("boolean", "TEST", "true")
-            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "false")
-            buildConfigField("int", "ENVIRONMENT", "3")
-
-            manifestPlaceholders = [channelName: "GooglePlay"]
-        }
+//        GOOGLE {
+//            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
+//            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
+//            buildConfigField("boolean", "LOG_ENABLE", "false")
+//            buildConfigField("boolean", "EMAIL_REGISTE", "false")
+//            buildConfigField("boolean", "TEST", "false")
+//            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
+//            buildConfigField("int", "ENVIRONMENT", "1")
+//
+//
+//            manifestPlaceholders = [channelName: "GooglePlay"]
+//        }
+//        HUAWEI {
+//            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
+//            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
+//            buildConfigField("boolean", "LOG_ENABLE", "false")
+//            buildConfigField("boolean", "EMAIL_REGISTE", "false")
+//            buildConfigField("boolean", "TEST", "false")
+//            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
+//            buildConfigField("int", "ENVIRONMENT", "1")
+//
+//
+//            manifestPlaceholders = [channelName: "HuaWei"]
+//        }
+//        MI {
+//            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
+//            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
+//            buildConfigField("boolean", "LOG_ENABLE", "false")
+//            buildConfigField("boolean", "EMAIL_REGISTE", "false")
+//            buildConfigField("boolean", "TEST", "false")
+//            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
+//            buildConfigField("int", "ENVIRONMENT", "1")
+//
+//
+//            manifestPlaceholders = [channelName: "MiStore"]
+//        }
+//
+//
+//        RELEASE_TEST {
+//            buildConfigField("String", "SERVER_BASE_URL", "\"http://newlivechat.rcplatformhk.com\"")
+//            buildConfigField("String", "INAPP_BILLING_URL", "\"https://androidpay.rcplatformhk.com\"")
+//            buildConfigField("boolean", "LOG_ENABLE", "true")
+//            buildConfigField("boolean", "EMAIL_REGISTE", "true")
+//            buildConfigField("boolean", "TEST", "true")
+//            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "true")
+//            buildConfigField("int", "ENVIRONMENT", "1")
+//
+//
+//            manifestPlaceholders = [channelName: "GooglePlay"]
+//        }
+//
+//        SERVER_202_TEST {
+//            buildConfigField("String", "SERVER_BASE_URL", "\"http://39.107.25.202\"")
+//            buildConfigField("String", "INAPP_BILLING_URL", "\"http://39.107.25.202\"")
+//            buildConfigField("boolean", "LOG_ENABLE", "true")
+//            buildConfigField("boolean", "EMAIL_REGISTE", "true")
+//            buildConfigField("boolean", "TEST", "true")
+//            buildConfigField("boolean", "RELEASE_ENVIRONMENT", "false")
+//            buildConfigField("int", "ENVIRONMENT", "3")
+//
+//            manifestPlaceholders = [channelName: "GooglePlay"]
+//        }
 
         SERVER_221_TEST {
             buildConfigField("String", "SERVER_BASE_URL", "\"http://101.201.148.221\"")
@@ -123,7 +125,7 @@ android {
         }
     }
 
-    def fileArray = []
+//    def fileArray = []
     buildTypes {
         release {
             minifyEnabled false
@@ -132,24 +134,37 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.all { output ->
                     project.ext { appName = 'livechat' }
-                    def variantProd = variant.productFlavors[0]
+                    def newName = ""
                     if ("true" == IS_JENKINS) {
                         def outDirectory = rootDir.getAbsolutePath() + "/apk"
                         variant.getPackageApplication().outputDirectory = new File(outDirectory)
+                        newName = appName + "_" + defaultConfig.versionName + "_" + BUILD_TIME + "_${variantProd.name}.apk"
 
-//                    } else {
-//                        outDirectory = rootDir.getAbsolutePath() + "/apk"
+                    } else {
+                        def variantProd = variant.productFlavors[0]
+                        def formattedDate = new Date().format('MMdd_HHmm')
+                        newName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_${variantProd.name}.apk"
+
                     }
-                    def formattedDate = new Date().format('MMdd_HHmm')
-                    def newName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_${variantProd.name}.apk"
 
                     outputFileName = newName
-                    fileArray.add(outputFile.parentFile.absolutePath + File.separator + newName)
                     println(outputFileName + "--------------------------------------------------------------------" + variant.getPackageApplication().outputDirectory)
                 }
             }
         }
     }
+
+//    build {
+//        doLast {
+//            println("doLast----------------------------------------------------------")
+//
+//            if ("true" == IS_JENKINS) {
+//                println("this is jenkins------------${fileArray.size()}----------------------------------------------")
+//            } else {
+//                println("this is no jenkins----------------------------------------------------------")
+//            }
+//        }
+//    }
 }
 
 dependencies {
@@ -162,14 +177,3 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-build {
-    doLast() {
-        println("doLast----------------------------------------------------------")
-
-        if ("true" == IS_JENKINS) {
-            println("this is jenkins------------${fileArray.size()}----------------------------------------------")
-        } else {
-            println("this is no jenkins----------------------------------------------------------")
-        }
-    }
-}
