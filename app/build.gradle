@@ -126,6 +126,8 @@ android {
     }
 
 //    def fileArray = []
+    def formattedDate
+
     buildTypes {
         release {
             minifyEnabled false
@@ -134,20 +136,17 @@ android {
             applicationVariants.all { variant ->
                 variant.outputs.all { output ->
                     project.ext { appName = 'livechat' }
-                    def newName = ""
+                    formattedDate = new Date().format('MMdd_HHmm')
+                    def variantProd = variant.productFlavors[0]
+
                     if ("true" == IS_JENKINS) {
                         def outDirectory = rootDir.getAbsolutePath() + "/apk"
                         variant.getPackageApplication().outputDirectory = new File(outDirectory)
-                        newName = appName + "_" + defaultConfig.versionName + "_" + BUILD_TIME + "_${variantProd.name}.apk"
-
+                        outputFileName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_${variantProd.name}.apk"
                     } else {
-                        def variantProd = variant.productFlavors[0]
-                        def formattedDate = new Date().format('MMdd_HHmm')
-                        newName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_${variantProd.name}.apk"
-
+                        outputFileName = appName + "_" + defaultConfig.versionName + "_" + formattedDate + "_${variantProd.name}.apk"
                     }
 
-                    outputFileName = newName
                     println(outputFileName + "--------------------------------------------------------------------" + variant.getPackageApplication().outputDirectory)
                 }
             }
