@@ -2,8 +2,7 @@ task copyTask {
     doLast {
         if ("true" == IS_JENKINS) {
             println("this is jenkins---------------------------------------------------")
-            def fileName = "livechat_${this.android.defaultConfig.versionName}_" +
-                    "${this.android.defaultConfig.versionCode}_" + "${BUILD_TIME}_" + "${PRODUCT_FLAVORS}.apk"
+            def fileName = "livechat_${this.android.defaultConfig.versionName}_" + "${BUILD_TIME}_" + "${PRODUCT_FLAVORS}.apk"
             def matcher = "3116_release" =~ "\\d*"
             println("-----------------" + fileName)
             if (matcher.find()) {
@@ -14,7 +13,7 @@ task copyTask {
             def targetFile = new File("G:/apk/${Branch}/")
             try {
                 if (!targetFile.exists()) {
-                    targetFile.mkdir()
+                    targetFile.mkdirs()
                 }
                 copy {
                     from sourceFile
@@ -25,6 +24,7 @@ task copyTask {
                 }
             } catch (Exception e) {
                 e.printStackTrace()
+                println("---------------------Exception-----------------------------")
                 println(e.printStackTrace())
             }
         }
