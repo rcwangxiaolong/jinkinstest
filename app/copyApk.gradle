@@ -3,7 +3,7 @@ task copyTask {
         if ("true" == IS_JENKINS) {
             println("this is jenkins---------------------------------------------------")
             def fileName = "livechat_${this.android.defaultConfig.versionName}_" +
-                    "${this.android.defaultConfig.versionCode}_" + build.formattedDate + "${PRODUCT_FLAVORS}.apk"
+                    "${this.android.defaultConfig.versionCode}_" + "${BUILD_TIME}_" + "${PRODUCT_FLAVORS}.apk"
             def matcher = "3116_release" =~ "\\d*"
             println("-----------------" + fileName)
             if (matcher.find()) {
