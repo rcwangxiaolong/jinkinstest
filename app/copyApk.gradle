@@ -2,14 +2,15 @@ task copyTask {
     doLast {
         if ("true" == IS_JENKINS) {
             def fileName = "livechat_${this.android.defaultConfig.versionName}_" + "${BUILD_TIME}_" + "${PRODUCT_FLAVORS}.apk"
-            def matcher = "3116_release" =~ "\\d*"
-            println("-----------------" + fileName)
-            if (matcher.find()) {
-                println("matcher----------" + matcher.group())
 
-            }
             def sourceFile = rootDir.getAbsolutePath() + "/apk/" + fileName
-            def targetFile = new File("G:/apk/${Branch}/")
+
+            def branch = "3117_release"
+            def matcher = branch =~ "\\d*"
+            if (matcher.find()) {
+                branch = matcher.group()
+            }
+            def targetFile = new File("//192.168.0.30/share/产品/androidApps-2018/LiveChat${branch}/")
             try {
                 if (!targetFile.exists()) {
                     targetFile.mkdirs()
